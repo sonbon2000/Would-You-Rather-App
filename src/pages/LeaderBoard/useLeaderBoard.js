@@ -7,30 +7,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 export const useLeaderBoard = () => {
   const { users } = useSelector((state) => state.users);
   const navigate = useNavigate();
-  useEffect(() => {
-    const auth = localStorage.getItem("auth");
-    if (!auth) {
-      navigate("/login");
-    }
-  }, []);
-
-  const leaderBoardList = () => {
-    const _leaderBoardList = [];
-
-    mapValues(users, (user) => {
-      const { name, avatarURL, answers, questions } = user;
-
-      _leaderBoardList.push({
-        name,
-        avatarURL,
-        answeredQuestions: Object.keys(answers).length,
-        createdQuestions: questions.length,
-        totalScore: Object.keys(answers).length + questions.length,
-      });
-    });
-
-    return orderBy(_leaderBoardList, "totalScore", "desc").slice(0, 3);
-  };
   let location = useLocation();
 
   useEffect(() => {
@@ -39,9 +15,25 @@ export const useLeaderBoard = () => {
       navigate("/login");
     }
     localStorage.setItem("location", location.pathname);
-
-    console.log(location);
   }, []);
+
+  const leaderBoardList = () => {
+    const leaderBoardList = [];
+
+    mapValues(users, (user) => {
+      const { name, avatarURL, answers, questions } = user;
+
+      leaderBoardList.push({
+        name,
+        avatarURL,
+        answeredQuestions: Object.keys(answers).length,
+        createdQuestions: questions.length,
+        totalScore: Object.keys(answers).length + questions.length,
+      });
+    });
+
+    return orderBy(leaderBoardList, "totalScore", "desc").slice(0, 3);
+  };
 
   return [{}, { leaderBoardList }];
 };

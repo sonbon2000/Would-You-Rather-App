@@ -12,11 +12,14 @@ export const useNewQuestion = () => {
   const { userId } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  let location = useLocation();
+
   useEffect(() => {
     const auth = localStorage.getItem("auth");
     if (!auth) {
       navigate("/login");
     }
+    localStorage.setItem("location", location.pathname);
   }, []);
 
   const isDisabled = optionOneText === "" || optionTwoText === "";
@@ -35,21 +38,11 @@ export const useNewQuestion = () => {
       optionOneText,
       optionTwoText,
     });
-
     dispatch(addNewQuestion(newQuestion));
     dispatch(addQuestionToUser({ userId, questionId: newQuestion.id }));
     toast.success("Question add successfully");
     navigate("/");
   };
-  let location = useLocation();
-
-  useEffect(() => {
-    const auth = localStorage.getItem("auth");
-    if (!auth) {
-      navigate("/login");
-    }
-    localStorage.setItem("location", location.pathname);
-  }, []);
 
   return [
     { isDisabled, optionOneText, optionTwoText },

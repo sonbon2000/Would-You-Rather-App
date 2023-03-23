@@ -13,9 +13,8 @@ export const useLogin = () => {
 
   const isDisabledButton = userId === "";
 
-  const renderSignInOptions = () => {
+  const renderSignInList = () => {
     const signInOptionsList = [];
-
     mapValues(users, (user) => {
       signInOptionsList.push({
         key: user.id,
@@ -24,7 +23,6 @@ export const useLogin = () => {
         image: { avatar: false, src: user.avatarURL },
       });
     });
-    console.log(users);
 
     return signInOptionsList;
   };
@@ -34,7 +32,7 @@ export const useLogin = () => {
   };
 
   const handleSignInUser = () => {
-    Object.keys(users).forEach(function (key) {
+    Object.keys(users).forEach((key) => {
       if (key === userId) {
         toast.success(`${users[key].name} login successfully`);
       }
@@ -51,6 +49,6 @@ export const useLogin = () => {
 
   return [
     { isDisabledButton, userId },
-    { renderSignInOptions, handleSelectUser, handleSignInUser },
+    { renderSignInList, handleSelectUser, handleSignInUser },
   ];
 };

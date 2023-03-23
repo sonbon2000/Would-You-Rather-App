@@ -5,49 +5,16 @@ import {
   Grid,
   GridColumn,
   Segment,
-  Label,
-  Icon,
   Progress,
 } from "semantic-ui-react";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import './PollResult.css';
+import "./PollResult.css";
+import { usePollResult } from "./usePollResult";
 
 const PollResult = ({ questionData, author }) => {
-
-  const { userId } = useSelector((state) => state.auth);
-  const navigate = useNavigate();
-
-  const optionOneVotes = questionData.optionOne.votes.length;
-  const optionTwoVotes = questionData.optionTwo.votes.length;
-  const totalVotes = optionOneVotes + optionTwoVotes;
-
-  const isVote = (option) => {
-    return questionData[option].votes.includes(userId);
-  };
-
-  const vote_Color = (option) => {
-    return questionData[option].votes.includes(userId) ? "green" : "grey";
-  };
-
-  const renderYourVoteLabel = () => {
-    return (
-      <Label color="yellow" ribbon="right">
-        <Icon name="check circle outline" size="big" />
-        <p style={{ float: "right" }}>Your Vote</p>
-      </Label>
-    );
-  };
-
-  const handleGoBack = () => {
-    navigate("/");
-  };
-
+  const [values, handlers] = usePollResult({ questionData });
   return (
     <SegmentGroup>
-      <h5 className="poll-result-author">
-        {author.name} asks:
-      </h5>
+      <h5 className="poll-result-author">{author.name} asks:</h5>
 
       <Grid divided padded>
         <GridColumn width={5} verticalAlign="middle">
@@ -57,33 +24,39 @@ const PollResult = ({ questionData, author }) => {
         <GridColumn width={11}>
           <h3>Results:</h3>
 
-          <Segment color={vote_Color("optionOne")}>
-            {isVote("optionOne") && renderYourVoteLabel()}
+          <Segment color={handlers.voteColor("optionOne")}>
+            {handlers.isVote("optionOne") && handlers.renderYourVoteLabel()}
             <h5>{questionData.optionOne.text}</h5>
             <Progress
-              percent={((optionOneVotes / totalVotes) * 100).toFixed(0)}
+              percent={(
+                (values.optionOneVotes / values.totalVotes) *
+                100
+              ).toFixed(0)}
               progress
-              color={vote_Color("optionOne")}
+              color={handlers.voteColor("optionOne")}
             />
             <p>
-              {optionOneVotes} out of {totalVotes} votes
+              {values.optionOneVotes} out of {values.totalVotes} votes
             </p>
           </Segment>
 
-          <Segment color={vote_Color("optionTwo")}>
-            {isVote("optionTwo") && renderYourVoteLabel()}
+          <Segment color={handlers.voteColor("optionTwo")}>
+            {handlers.isVote("optionTwo") && handlers.renderYourVoteLabel()}
             <h5>{questionData.optionTwo.text}</h5>
             <Progress
-              percent={((optionTwoVotes / totalVotes) * 100).toFixed(0)}
+              percent={(
+                (values.optionTwoVotes / values.totalVotes) *
+                100
+              ).toFixed(0)}
               progress
-              color={vote_Color("optionTwo")}
+              color={handlers.voteColor("optionTwo")}
             />
             <p>
-              {optionTwoVotes} out of {totalVotes} votes
+              {values.optionTwoVotes} out of {values.totalVotes} votes
             </p>
           </Segment>
 
-          <div className="poll-button" onClick={handleGoBack}>
+          <div className="poll-button" onClick={handlers.handleGoBack}>
             Go back
           </div>
         </GridColumn>

@@ -25,7 +25,7 @@ const Login = () => {
               scrolling
               required
               fluid
-              options={handlers.renderSignInOptions()}
+              options={handlers.renderSignInList()}
               value={values.userId}
               onChange={handlers.handleSelectUser}
             />

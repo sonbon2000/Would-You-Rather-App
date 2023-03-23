@@ -1,8 +1,6 @@
 import React from "react";
 import { Tab } from "semantic-ui-react";
-
 import "./Home.css";
-
 import { useHome } from "./useHome";
 
 const Home = () => {

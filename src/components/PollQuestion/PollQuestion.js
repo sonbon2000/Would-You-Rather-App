@@ -10,6 +10,7 @@ import {
 } from "semantic-ui-react";
 import "./PollQuestion.css";
 import { usePollQuestion } from "./usePollQuestion";
+
 const PollQuestion = ({ questionData, author }) => {
   const [values, handlers] = usePollQuestion({ questionData });
   return (

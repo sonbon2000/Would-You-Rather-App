@@ -19,6 +19,13 @@ export const useNewQuestion = () => {
     if (!auth) {
       navigate("/login");
     }
+  }, []);
+
+  useEffect(() => {
+    const auth = localStorage.getItem("auth");
+    if (!auth) {
+      navigate("/login");
+    }
     localStorage.setItem("location", location.pathname);
   }, []);
 

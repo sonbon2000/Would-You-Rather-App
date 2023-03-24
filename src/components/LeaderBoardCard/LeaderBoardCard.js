@@ -8,7 +8,7 @@ import {
   Divider,
   SegmentGroup,
 } from "semantic-ui-react";
-import './LeaderBoardCard.css';
+import "./LeaderBoardCard.css";
 
 const LeaderBoardCard = ({ leaderBoardData, index }) => {
   const { name, avatarURL, answeredQuestions, createdQuestions, totalScore } =
@@ -21,7 +21,7 @@ const LeaderBoardCard = ({ leaderBoardData, index }) => {
       <Label corner="left" icon="trophy" color={rankingColorLabel[index]} />
       <Grid divided padded>
         <GridColumn width={4} verticalAlign="middle">
-          <img className="leader-img" src={avatarURL} alt=""/>
+          <img className="leader-img" src={avatarURL} alt="" />
         </GridColumn>
 
         <GridColumn width={8}>
@@ -41,9 +41,7 @@ const LeaderBoardCard = ({ leaderBoardData, index }) => {
           <SegmentGroup>
             <h5 className="leaderboard-header">Score</h5>
             <Segment>
-              <div className="total-score">
-                {totalScore}
-              </div>
+              <div className="total-score">{totalScore}</div>
             </Segment>
           </SegmentGroup>
         </GridColumn>

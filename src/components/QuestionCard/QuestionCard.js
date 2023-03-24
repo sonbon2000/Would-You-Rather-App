@@ -2,6 +2,7 @@ import React from "react";
 import { SegmentGroup, Grid, GridColumn } from "semantic-ui-react";
 import "./QuestionCard.css";
 import { useQuestionCard } from "./useQuestionCard";
+import PropTypes from "prop-types";
 
 const QuestionCard = ({ questionData, author, isAnswered }) => {
   const [values, handlers] = useQuestionCard({ isAnswered, questionData });
@@ -27,6 +28,12 @@ const QuestionCard = ({ questionData, author, isAnswered }) => {
       </Grid>
     </SegmentGroup>
   );
+};
+
+QuestionCard.propTypes = {
+  questionData: PropTypes.object.isRequired,
+  author: PropTypes.object.isRequired,
+  isAnswered: PropTypes.bool.isRequired,
 };
 
 export default QuestionCard;

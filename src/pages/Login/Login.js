@@ -30,10 +30,10 @@ const Login = () => {
               onChange={handlers.handleSelectUser}
             />
             {values.isDisabledButton ? (
-              <div className="not-submmit-login-button">Login</div>
+              <div className="not-submmit-login-button">Sign In</div>
             ) : (
               <div className="login-button" onClick={handlers.handleSignInUser}>
-                Login
+                Sign In
               </div>
             )}
           </Form>

@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login page 1`] = `<Login />`;
+
+exports[`Provider Login page 1`] = `<Login />`;
+
+exports[`Test whole app Home page 1`] = `<Home />`;
+
+exports[`Test whole app LeaderBoardCard comp 1`] = `<LeaderBoardCard />`;
+
+exports[`Test whole app Leaderboard page 1`] = `<LeaderBoard />`;
+
+exports[`Test whole app Login page 1`] = `<Login />`;
+
+exports[`Test whole app NavBar comp 1`] = `<NavBar />`;
+
+exports[`Test whole app New Question page 1`] = `<NewQuestion />`;
+
+exports[`Test whole app New question page 1`] = `<Home />`;
+
+exports[`Test whole app Not found page 1`] = `<NotFound />`;
+
+exports[`Test whole app PollQuestion comp 1`] = `<PollQuestion />`;
+
+exports[`Test whole app PollResult comp 1`] = `<PollResult />`;
+
+exports[`Test whole app Question Card comp 1`] = `<QuestionCard />`;
+
+exports[`Test whole app Question Detail page 1`] = `<QuestionDetail />`;

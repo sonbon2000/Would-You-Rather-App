@@ -46,11 +46,11 @@ function App() {
         <Route element={<PrivateRoutes />}>
           <Route path="/" element={<Home />} />
           <Route path="/add" element={<NewQuestion />} />
-          <Route path="/question/:questionId" element={<QuestionDetail />} />
+          <Route path="/questions/:questionId" element={<QuestionDetail />} />
           <Route path="/leaderboard" element={<LeaderBoard />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
         <Route path="/login" element={<Login />} />
-        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

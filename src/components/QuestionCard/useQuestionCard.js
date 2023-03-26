@@ -7,7 +7,7 @@ export const useQuestionCard = ({ isAnswered, questionData }) => {
   const buttonColor = isAnswered ? "#21ba45" : "#2185d0";
 
   const handleClickNavigation = () => {
-    navigate(`/question/${questionData.id}`);
+    navigate(`/questions/${questionData.id}`);
   };
 
   return [{ buttonText, buttonColor }, { handleClickNavigation }];
